@@ -25,9 +25,15 @@ namespace WeatherApp
 #endif
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-            if (!AndroidLocationPermission.Ensure())
+            if (!AndroidLocationPermission.HasFineLocation())
             {
-                onError?.Invoke("Requesting location permission... tap Allow and retry.");
+                onError?.Invoke("Requesting location permission...");
+
+                AndroidLocationPermission.RequestFineLocation(
+                    onGranted: null, // we’ll auto-refresh from WeatherAppController
+                    onDenied: () => onError?.Invoke("Location permission denied. Enable it in Settings and retry.")
+                );
+
                 yield break;
             }
 #endif

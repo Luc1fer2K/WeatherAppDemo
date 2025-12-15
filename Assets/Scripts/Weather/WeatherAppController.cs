@@ -18,6 +18,9 @@ namespace WeatherApp
         private ILocationServiceWrapper _location;
         private IReverseGeocodingClient _reverseGeocode;
 
+        private Coroutine _refreshRoutine;
+
+
         private void Awake()
         {
             _api = new WeatherApiClient();
@@ -32,8 +35,32 @@ namespace WeatherApp
 
         private void Start()
         {
-            StartCoroutine(RefreshWeather());
+#if UNITY_ANDROID && !UNITY_EDITOR
+            if (!AndroidLocationPermission.HasFineLocation())
+            {
+                _ui?.SetStatus("Requesting location permission...");
+                AndroidLocationPermission.RequestFineLocation(
+                    onGranted: () =>
+                    {
+                        _ui?.SetStatus("Permission granted. Refreshing...");
+                        StartRefresh();
+                    },
+                    onDenied: () =>
+                    {
+                        _ui?.SetError("Location permission denied. Enable it in Settings and tap Refresh.");
+                    });
+                return;
+            }
+#endif
+            StartRefresh();
         }
+
+        private void StartRefresh()
+        {
+            if (_refreshRoutine != null) StopCoroutine(_refreshRoutine);
+            _refreshRoutine = StartCoroutine(RefreshWeather());
+        }
+
 
         private void OnDestroy()
         {
@@ -43,11 +70,22 @@ namespace WeatherApp
 
         private void OnRefresh()
         {
-            StartCoroutine(RefreshWeather());
+            StartRefresh();
         }
 
         private IEnumerator RefreshWeather()
         {
+#if UNITY_ANDROID && !UNITY_EDITOR
+            if (!AndroidLocationPermission.HasFineLocation())
+            {
+                _ui?.SetStatus("Requesting location permission...");
+                AndroidLocationPermission.RequestFineLocation(
+                    onGranted: () => StartRefresh(),
+                    onDenied: () => _ui?.SetError("Location permission denied.")
+                );
+                yield break;
+            }
+#endif
             _ui?.SetStatus("Getting location...");
 
             float lat = 0f, lon = 0f;

@@ -20,31 +20,28 @@ namespace MobileToastKit
         }
 
 #if UNITY_ANDROID && !UNITY_EDITOR
+        private static AndroidJavaObject _currentToast;
+
         private static void ShowAndroidToast(string message)
         {
-            try
+            using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            using (var activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
             {
-                using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
-                using (var activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+                activity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
                 {
-                    activity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
+                    using (var toastClass = new AndroidJavaClass("android.widget.Toast"))
                     {
-                        using (var toastClass = new AndroidJavaClass("android.widget.Toast"))
-                        {
-                            var toast = toastClass.CallStatic<AndroidJavaObject>(
-                                "makeText",
-                                activity,
-                                message,
-                                toastClass.GetStatic<int>("LENGTH_SHORT")
-                            );
-                            toast.Call("show");
-                        }
-                    }));
-                }
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogWarning($"[MobileToastService] Android toast failed: {e}");
+                        _currentToast?.Call("cancel");
+
+                        _currentToast = toastClass.CallStatic<AndroidJavaObject>(
+                            "makeText",
+                            activity,
+                            message,
+                            toastClass.GetStatic<int>("LENGTH_SHORT")
+                        );
+                        _currentToast.Call("show");
+                    }
+                }));
             }
         }
 #endif

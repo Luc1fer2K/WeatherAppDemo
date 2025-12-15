@@ -1,0 +1,12 @@
+# ninja log v5
+65	397	7875361327700559	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	876dcd2277d25213
+398	552	7875361329253078	C:/Users/priks/Weather_App_Demo/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/424t3o2n/obj/arm64-v8a/libswappywrapper.so	9823fa7fa68a73d3
+38	1033	7875361334056409	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	14b97199df523bdf
+16	1038	7875361334071493	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	3d1bee27b7e89196
+0	1051	7875361334247794	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	8193fd2f54787bd3
+55	1063	7875361334358435	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	639b2c1af16a992
+31	1108	7875361334806867	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	94f754962cca0de4
+47	1252	7875361336262793	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	25aeef100e71c51f
+23	1259	7875361336318312	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b4155735d6310a1f
+8	1355	7875361337274456	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	29d05cfea93dbfda
+1356	1451	7875361338259831	C:/Users/priks/Weather_App_Demo/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/424t3o2n/obj/arm64-v8a/libgame.so	76727c1ebb1313d7
