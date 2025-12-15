@@ -96,7 +96,8 @@ Editor tests validate API parsing and service behavior.
 
 ## 📸 Screenshots / Demo
 
-_TODO: Add screenshots or a short GIF here_
+![WhatsApp Image 2025-12-16 at 03 56 14](https://github.com/user-attachments/assets/46412252-4d45-43a6-8eb1-7982399276b3)
+
 
 ---
 
