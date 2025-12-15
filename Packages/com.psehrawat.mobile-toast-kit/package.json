@@ -1,0 +1,10 @@
+{
+  "name": "com.psehrawat.mobile-toast-kit",
+  "version": "1.0.0",
+  "displayName": "Mobile Toast Kit",
+  "description": "A Unity package to show Android Toast or iOS snackbar-style messages via a reusable GameObject.",
+  "unity": "2021.3",
+  "author": {
+    "name": "Your Name"
+  }
+}
