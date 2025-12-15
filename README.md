@@ -3,6 +3,8 @@
 ![Language](https://img.shields.io/badge/Language-C%23-blue?logo=csharp)
 ![Status](https://img.shields.io/badge/Status-Portfolio%20Project-brightgreen)
 
+# Download APK: https://github.com/Luc1fer2K/WeatherAppDemo/releases/tag/v1.0.0
+
 # 🌦 Weather App Demo — Unity
 
 > A clean, production-style Unity application that fetches real-time weather data using device location, designed with **testability, modularity, and mobile readiness** in mind.
